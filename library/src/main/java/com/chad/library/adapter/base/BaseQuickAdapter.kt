@@ -1267,7 +1267,7 @@ abstract class BaseQuickAdapter<T, VH : BaseViewHolder>
      * remove the item associated with the specified position of adapter
      * 删除指定位置的数据
      *
-     * @param position
+     * @param position data position（非 adapterPosition）
      */
     open fun removeAt(@IntRange(from = 0) position: Int) {
         if (position >= data.size) {
@@ -1277,7 +1277,7 @@ abstract class BaseQuickAdapter<T, VH : BaseViewHolder>
         val internalPosition = position + headerLayoutCount
         notifyItemRemoved(internalPosition)
         compatibilityDataSizeChanged(0)
-        notifyItemRangeChanged(internalPosition, this.data.size - internalPosition)
+        notifyItemRangeChanged(internalPosition, this.data.size - position)
     }
 
     open fun remove(data: T) {
